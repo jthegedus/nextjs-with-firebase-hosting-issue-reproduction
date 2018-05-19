@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": "dist/public",
+    "rewrites": [
+      {
+        "source": "**/**",
+        "function": "next"
+      }
+    ],
+    "predeploy": "npm run build-public"
+  },
+  "functions": {
+    "source": "dist/functions"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "with-firebase-hosting",
+  "version": "3.0.0",
+  "description": "Host Next.js SSR app on Firebase Cloud Functions with Firebase Hosting redirects.",
+  "scripts": {
+    "dev": "next src/app",
+    "serve": "NODE_ENV=production firebase serve --only functions,hosting",
+    "predeploy": "npm run build-app && npm run build-funcs && npm run copy-deps",
+    "deploy": "firebase deploy",
+    "clean": "rimraf \"dist/functions\" && rimraf \"dist/public\"",
+    "build-public": "cpx \"src/public/**/*.*\" \"dist/public\" -C",
+    "build-funcs": "cpx \"src/functions/*\" \"dist/functions\"",
+    "build-app": "next build src/app/",
+    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\""
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.42",
+    "firebase-admin": "^5.12.1",
+    "firebase-functions": "^1.0.2",
+    "next": "^6.0.3",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "@firebase/app-types": "^0.1.2",
+    "cpx": "^1.5.0",
+    "prettier": "^1.12.1",
+    "rimraf": "^2.6.2"
+  }
+}
